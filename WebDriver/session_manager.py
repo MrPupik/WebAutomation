@@ -4,13 +4,12 @@ from time import sleep
 mongo = None
 client = None
 webdriver_collection_name = 'webdriver'
-
+MONGODB_URL = 'YOUR_URL'
 
 def connect():
-    global mongo
+    global mongo, client, MONGODB_URL 
     global client
-    if not mongo:
-        MONGODB_URL = 'dbetaruns0002'
+    if not mongo:        
         DB = "TestData"
         client = MongoClient(MONGODB_URL, port=27017)
         mongo = client[DB]
