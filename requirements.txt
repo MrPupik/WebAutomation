@@ -5,11 +5,7 @@ astroid
 atomicwrites
 attrs
 bcrypt
-certifi
-cffi
-chardet
 Click
-colorama
 cryptography
 flake8
 Flask
