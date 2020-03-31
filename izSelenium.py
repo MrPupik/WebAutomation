@@ -1,22 +1,50 @@
+
+
+# region  imports 
 import sys
-this = sys.modules[__name__]
-from Autotest.Core.izHelpers import actionWrapper
-import Autotest.Core.TimeoutManager as TM
-import Autotest.Core.Logger as log
-
-from collections import namedtuple
-# _lookup_options = namedtuple('_lookup_options', ['long_timeout','short_timeout', 'default_timeout', 'custom_timeout'])
-
+from platform import platform
+from os import path
 import types
+from time import sleep
+from collections import namedtuple
+from json import loads, dumps, JSONDecodeError
 
-
+# selenium
+import selenium.webdriver as webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import selenium.webdriver.remote.webelement as webelement
 from selenium.webdriver.common.by import By
-import sys
-from time import sleep
 import selenium.webdriver.common.action_chains as actions
 from selenium.webdriver.common.alert import Alert
 from selenium.common.exceptions import NoSuchElementException
+
+
+# Autotest
+from Autotest.Core.izHelpers import actionWrapper
+import Autotest.Core.TimeoutManager as TM
+import Autotest.Core.Logger as log
+from Autotest.WebDriver.session_manager import close_open_sessions, save_session, get_open_sessions
+
+# endregion
+
+
+# config
+this = sys.modules[__name__]
+CONFIG_PATH = path.dirname(__file__)+"/iz.conf"
+
+def _read_config():
+    global CONFIG_PATH
+    try:
+        with open(CONFIG_PATH, 'r') as conf_file:
+            this.conf = loads(conf_file.read())
+            this._webdriver_url = conf['webdriver-url'].replace('\n','')
+            this.debug_mode = conf['debug-mode'] if 'debug-mode' in conf.keys() else True
+    except Exception as Error:
+        log.error(f'error reading config file at {CONFIG_PATH}')
+        raise Error
+
+# reading config        
+_read_config()
 
 class Selector:
     '''
@@ -35,36 +63,20 @@ class Selector:
 
 #region Web-Driver
 
-import selenium.webdriver as webdriver
-# from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from platform import platform
-from os import path
-from Autotest.WebDriver.session_manager import close_open_sessions, save_session, get_open_sessions
-
-
-CONFIG_PATH = path.dirname(__file__)+"/iz.conf"
 
 driver_options = {
     "chrome": DesiredCapabilities.CHROME  #TODO: more browsers
 }
 
 
-def _ReadConfig():
-    with open(CONFIG_PATH, 'r') as conf:
-        this._webdriver_url = conf.read().replace('\n','')
 
 def set_webdriver_url(url):
-    _webdriver_url = url  # TODO if config would contain more then url, write config to file here. 
+    raise NotImplementedError
 
-def get_webdriver_url():
-    try:
-        return this._webdriver_url
-    except AttributeError:
-        _ReadConfig()
-    return this._webdriver_url
+
+def get_webdriver_url():    
+    return this._webdriver_url    
     
-
 
 this.drivers = {}
 
@@ -83,7 +95,8 @@ def GetDriver(driver_alias, browser="chrome"):
     
     new_driver = izWebDriver(driver_url, driver_options[browser])
     new_driver.implicitly_wait(TM._implicit_wait)
-    save_session(driver_alias, new_driver.session_id)
+    if not this.debug_mode:
+        save_session(driver_alias, new_driver.session_id) #TODO add try-catch. not saving shouldnt crash 
     this.drivers[driver_alias] = new_driver
 
     return new_driver
@@ -106,9 +119,12 @@ class izWebDriver(webdriver.Remote):
     def close_open_sessions():
         """
         close all webdriver sessions in webdriver_url.
-        """                    
-        close_open_sessions(get_webdriver_url(), izWebDriver,
-                            DesiredCapabilities.CHROME)
+        """
+        if this.debug_mode:            
+            log.warn('load_open_session: debug mode on. no session saving')
+        else:
+            close_open_sessions(get_webdriver_url(), izWebDriver,
+                                DesiredCapabilities.CHROME)
     
     @staticmethod
     def load_open_session():
@@ -116,11 +132,15 @@ class izWebDriver(webdriver.Remote):
         loads open sessions. returns the sessions.
         after running this function, sessions will allso
         be avialbe via GetDriver method
-        """                      
-        open_drivers = get_open_sessions(get_webdriver_url(), izWebDriver,
-                                         DesiredCapabilities.CHROME)[0]
-        this.drivers.update(open_drivers)
-        return open_drivers
+        """
+        if this.debug_mode:                      
+            log.warn('load_open_session: debug mode on. no session saving')
+        else:
+            open_drivers = get_open_sessions(get_webdriver_url(), izWebDriver,
+                                             DesiredCapabilities.CHROME)[0]
+            this.drivers.update(open_drivers)
+            return open_drivers
+        return None
 
     
     def _find(self, selector: Selector, sensitive, root=None):
