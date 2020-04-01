@@ -410,3 +410,6 @@ def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=""):
     raise Exception(throw_msg)
 
 #endregion
+
+
+
