@@ -4,23 +4,25 @@ selenium based infrastructure for web automation tests
 ## basic usage
 ```python
 
-from izSelenium import GetDriver
+from Autotest.izSelenium import GetDriver, Selector, By
 
 # get izWebdriver
-keep_driver = GetDriver('keep') # that's it. you have a working chrome-driver
-gmail_driver = GetDriver('gmail-driver') # this is another driver session: another window
+driver = GetDriver('google') # now izSelenium saved a driver instance with an alias 'google'
+gmail_driver = GetDriver('gmail-driver') # this is another driver session: another window. 
+
+
+# to seperate logic from html, we use an object called 'selector' to select elements on a web page. 
+s_search_input = Selector(By.CSS_SELECTOR, f"form input[title='{SEARCH_TITLE}']")
+
+# it's recomended to actually search for elements in a dedicated function
+def search_input():
+    return driver.find(s_search_input)
 
 # izWebDriver has all webdriver functions and some more
 keep_driver.get(KEEP_URL)
 
-# in izSelenium we find elements with 'Selectors' as defined in izSelenium.Selector
-iz_element = keep_driver.find(NEW_NOTE_SELECTOR)
-# izWebElement has all webdriver functions and some more
-iz_element.click()
-iz_element.set_value('this value just appears using JS value attribute')
-keep_driver.find(CLOSE_BTN_SELECTOR).click()
-
-gmail_driver.get(GMAIL_URL)
-check_for_reminder_from_keep(gmail_driver)
+driver.get(r"http://www.google.com")
+# izSelenium actions, like following 'send_keys', use restries and fix-actions - such as trying to set value with JS in case of failure
+search_input().send_keys("i know how to automate") 
 
 ```
