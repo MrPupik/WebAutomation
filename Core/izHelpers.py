@@ -1,4 +1,4 @@
-import Autotest.Core.Logger as log
+import Core.Logger as log
 import subprocess
 
 def processArgs(argList):
@@ -23,7 +23,7 @@ def processArgs(argList):
     return (params, flags)
 
 import types
-import Autotest.Core.TimeoutManager as TimeoutManager
+import Core.TimeoutManager as TimeoutManager
 from time import sleep
 
 def actionWrapper(action: types.FunctionType,

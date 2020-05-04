@@ -4,7 +4,7 @@ selenium based infrastructure for web automation tests
 ## basic usage
 ```python
 
-from Autotest.izSelenium import get_driver, Selector, By
+from izSelenium import get_driver, Selector, By
 
 # get izWebdriver
 driver = get_driver('google') # now izSelenium saved a driver instance with an alias 'google'

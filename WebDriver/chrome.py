@@ -1,9 +1,9 @@
-import Autotest.Core.Logger as log
-import Autotest.Core.TimeoutManager as tm
+import Core.Logger as log
+import Core.TimeoutManager as tm
 #region open/close app
 # from selenium.webdriver import Chrome
 from time import sleep
-import Autotest.WebDriver.Selectors.chrome as chrome
+import WebDriver.Selectors.chrome as chrome
 
 POPUPS_ALLOWED = False
 

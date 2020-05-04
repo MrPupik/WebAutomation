@@ -1,9 +1,9 @@
 import sys
-import Autotest.Core.izHelpers as stuff
+import Core.izHelpers as stuff
 import subprocess
 import os 
 import shutil
-from Autotest.Core.izHelpers import Command, CommandSequence
+from Core.izHelpers import Command, CommandSequence
 
 Windows_Paths = {
     "tower":"c:\\AutoTest\\Tower",
