@@ -235,6 +235,15 @@ class izWebElement(webelement.WebElement):
                 log.fail(self.selector.statement + failMassage)
                 log.info("   " + str(e))
 
+    def set_attribute(self, name, value):        
+        """
+        set attribute of the element (using js setAttribute function)
+        """
+        # if value is empty, send a string representaion of an empty string
+        value = value if str(value) != '' else '""'
+        script = f'arguments[0].setAttribute("{name}", {value})'
+        self.RunJS(script, f'set_attribute failed for {name}: {value}')
+
     def click(self, fix_actions = True):
         if fix_actions:
             fix =  [self.scroll_into_view]
@@ -296,7 +305,7 @@ class izWebElement(webelement.WebElement):
 
     def send_keys(self, *value):
         """
-        iz method
+        iz method. 
         """
         if len(value) > 1:
             alt = None
@@ -317,6 +326,23 @@ class izWebElement(webelement.WebElement):
             "arguments[0].scrollIntoView();",
             self.selector.statement + "SCROLL FAIL",
             sensitive=True)
+
+    def highlight(self, sleep_and_stop=2):
+        """
+        turn current element's border into solid red 2px.
+        return original style after 'sleep_and_stop' seconds of time.sleep
+        if 'sleep_and_stop' is 0 - border stays and no sleep.        
+        original stlyle saved to self.original_style
+        """
+        self.original_style = self.get_attribute('style')        
+        self.set_attribute('style', '"border: 2px solid red;"')
+        if sleep_and_stop > 0:
+            sleep(sleep_and_stop)
+            self.set_attribute('style', self.original_style)        
+            
+        
+
+        
 
     def find(self, selector: Selector, sensitive=True):
         """
@@ -374,12 +400,18 @@ class izWebElement(webelement.WebElement):
 
     @staticmethod
     def ConvertList(lst: list, selector, driver):
+        """
+        convert a list of classic webelements to izWebElelemnts
+        """
         newLst = []
         for e in lst:
             newLst.append(izWebElement(e, selector, driver))
         return newLst
 
     def get_text(self):
+        """
+        get text of current element using either 'text' or 'innerHTML' attributes
+        """
         from selenium.common.exceptions import StaleElementReferenceException
         for i in range(0,2):
             try:
@@ -401,15 +433,15 @@ class izWebElement(webelement.WebElement):
                 self, x, y).perform, [self.scroll_into_view], None,
             self.selector.statement + ": iz-move failed")
 
+# TODO possibly deprecate:
+# def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=""):
+#     result = self.webdiver.find(element.selector.method,
+#                   element.selector.statement).get_text()
+#     if (contains and text in result) or text == result:
+#         return True
+#     raise Exception(throw_msg)
 
-def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=""):
-    result = find(element.selector.method,
-                  element.selector.statement).get_text()
-    if (contains and text in result) or text == result:
-        return True
-    raise Exception(throw_msg)
-
-#endregion
+# endregion
 
 
 
