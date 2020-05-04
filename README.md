@@ -4,11 +4,11 @@ selenium based infrastructure for web automation tests
 ## basic usage
 ```python
 
-from Autotest.izSelenium import GetDriver, Selector, By
+from Autotest.izSelenium import get_driver, Selector, By
 
 # get izWebdriver
-driver = GetDriver('google') # now izSelenium saved a driver instance with an alias 'google'
-gmail_driver = GetDriver('gmail-driver') # this is another driver session: another window. 
+driver = get_driver('google') # now izSelenium saved a driver instance with an alias 'google'
+gmail_driver = get_driver('gmail-driver') # this is another driver session: another window. 
 
 
 # to seperate logic from html, we use an object called 'selector' to select elements on a web page. 
