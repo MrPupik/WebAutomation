@@ -1,9 +1,9 @@
-import Autotest.Core.Logger as log
-import Autotest.Core.TimeoutManager as tm
+import izSelenium.Core.Logger as log
+import izSelenium.Core.TimeoutManager as tm
 #region open/close app
 # from selenium.webdriver import Chrome
 from time import sleep
-import Autotest.WebDriver.Selectors.chrome as chrome
+import izSelenium.WebDriver.Selectors.chrome as chrome
 
 POPUPS_ALLOWED = False
 
@@ -50,7 +50,7 @@ def allowPopups(webdriver, SERVERS:list):
             chrome.btnConfirmException().click()
             sleep(0.1)
             chrome.btnConfirmSettings().click()
-            log.success("chrome popups allowed")
+            log.info("chrome popups allowed")
             log.info("i saw system's url at chrome exception screen !")
             POPUPS_ALLOWED = True
             return True

@@ -1,5 +1,5 @@
 __doc__ = "selectors for chrome stettings and menu"
-from Autotest.izSelenium import Selector, By
+from izSelenium import Selector, By
 driver  = None
 
 URL_SETTINGS = "chrome://settings/"
