@@ -1,4 +1,4 @@
-# Autotet.Web
+# Autotet.Web: izSelenium
 selenium based infrastructure for web automation tests
 
 ## basic usage
