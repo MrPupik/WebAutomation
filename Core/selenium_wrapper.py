@@ -16,44 +16,26 @@ from selenium.common.exceptions import (StaleElementReferenceException,
                                         NoSuchElementException,
                                         ElementNotVisibleException)
 
-# Autotest
-from Core.izHelpers import actionWrapper
-import Core.TimeoutManager as TM
-import Core.Logger as log
-from WebDriver.session_manager import (close_open_sessions,
-                                       save_session, get_open_sessions)
+# izSelenium
+from izSelenium.Core.izHelpers import actionWrapper
+import izSelenium.Core.TimeoutManager as TM
+from izSelenium.Core.Logger import log
+from izSelenium.Core.session_manager import (close_open_sessions,
+                                             save_session, 
+                                             get_open_sessions)
 
 # endregion
 
 
 # config
 this = sys.modules[__name__]
-CONFIG_PATH = path.dirname(__file__)+"/iz.conf"
+CONFIG_PATH = path.dirname(__file__)+"\\..\\iz.conf"
 conf = None
 _webdriver_url = None
-debug_mode = True
-
+b_old_sessions = None
+b_save_sessions = None
 # webdriver sessions
 drivers = {}
-
-
-def _read_config():
-    global CONFIG_PATH, conf, _webdriver_url, debug_mode
-    try:
-        with open(CONFIG_PATH, 'r') as conf_file:
-            conf = loads(conf_file.read())
-        _webdriver_url = conf['webdriver-url'].replace('\n', '')
-        if 'debug-mode' in conf.keys():
-            debug_mode = conf['debug-mode']
-        else:
-            debug_mode = True
-    except Exception as Error:
-        log.error(f'error reading config file at {CONFIG_PATH}')
-        raise Error
-
-
-# reading config
-_read_config()
 
 
 class Selector:
@@ -92,9 +74,17 @@ def get_webdriver_url():
 
 def get_driver(driver_alias, browser="chrome"):
     """
-    get instance of izWebDriver. available browsers:'chrome' [default: chrome]
+    get instance of izWebDriver. set driver-url at iz.conf
     """
-    global drivers, debug_mode
+    global drivers, b_save_sessions, b_old_sessions
+
+    if b_old_sessions:
+        drivers = get_open_sessions(_webdriver_url, izWebDriver,
+                                    DesiredCapabilities.CHROME)[0]
+    else:
+        close_open_sessions(_webdriver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
+
     try:
         return drivers[driver_alias]
     except KeyError:
@@ -106,12 +96,11 @@ def get_driver(driver_alias, browser="chrome"):
     
     new_driver = izWebDriver(driver_url, driver_options[browser])
     new_driver.implicitly_wait(TM._implicit_wait)
-    if not debug_mode:
-        try:
-            save_session(driver_alias, new_driver.session_id)
-        except Exception as err:
-            print("izSelenium: couldnt save drvier to db.")
-            print(err)
+    if b_save_sessions:        
+        save_session(driver_alias, new_driver.session_id)
+    else:
+        close_open_sessions(driver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
     drivers[driver_alias] = new_driver
 
     return new_driver
@@ -126,7 +115,7 @@ def Quit_All():
 
 class izWebDriver(webdriver.Remote):
     """
-    iz implementation for selenium web-driver
+    iz implementation for selenium remote web-driver    
     """
     def __init__(self, url, capabilities):
         super().__init__(url, capabilities)
@@ -174,7 +163,7 @@ class izWebDriver(webdriver.Remote):
                                 "find element failed. ", selector.method,
                                 selector.statement)
         if element:
-            log.success("find - success")
+            log.info("find - success")
             if (type(element) is list):
                 return izWebElement.ConvertList(element, selector, self)
             else:
@@ -231,7 +220,7 @@ class izWebElement(webelement.WebElement):
         """
         iz function - running javascript with the element as arguments[0]
         """
-        print("RunJS:" + script)
+        log.info("RunJS:" + script)
         try:
 
             self.driver.execute_script(script, self)
@@ -281,16 +270,16 @@ class izWebElement(webelement.WebElement):
 
     def jsClick(self):
         """
-        iz method
+        iz method. click with js script
         """
-        print("clicking " + self.selector.statement)
+        log.info("clicking " + self.selector.statement)
         self.RunJS("arguments[0].click()", "js click failed")
 
     def jsDouble_click(self):
         """
-        iz method
+        iz method. doubleclick with js script
         """
-        print("clicking " + self.selector.statement)
+        log.info("clicking " + self.selector.statement)
         self.RunJS("arguments[0].click();arguments[0].click();",
                    "js click failed")
 
@@ -369,24 +358,24 @@ class izWebElement(webelement.WebElement):
                     sleep(sleep_time)
                     total += (sleep_time + TM._implicit_wait)
                 else:
-                    print("WaitNExist success - element not on screen")
+                    log.info("WaitNExist success - element not on screen")
                     return True
             except StaleElementReferenceException:
-                print("WaitNExist success - element is stale")
+                log.info("WaitNExist success - element is stale")
                 return True
             except NoSuchElementException:
-                print("WaitNExist success - no such element")
+                log.info("WaitNExist success - no such element")
                 return True
             except ElementNotVisibleException:
-                print("WaitNExist success - element not visible")
+                log.info("WaitNExist success - element not visible")
                 return True
             except Exception as e:
-                print(f"WaitNExist propably success: \n{e}")
+                log.info(f"WaitNExist propably success: \n{e}")
                 return True
             finally:
                 attempt += 1
-        print("WaitNExist fail - element still here after " + str(total) +
-              "seconds")
+        log.info("WaitNExist fail - element still here after " + str(total) +
+                 "seconds")
         return False
 
     def waitForText(self, text: str, contains=True, sensitive=False):
@@ -457,3 +446,31 @@ def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=""):
 
 
 # endregion
+
+
+
+def _read_config():
+    global CONFIG_PATH, conf, _webdriver_url, b_old_sessions, b_save_sessions
+    try:
+        with open(CONFIG_PATH, 'r') as conf_file:
+            conf = loads(conf_file.read())
+        _webdriver_url = conf['webdriver-url'].replace('\n', '')
+        if 'sessions' in conf.keys():
+            sessions_conf = conf['sessions']
+            if 'use-old-sessions' in sessions_conf.keys():
+                b_old_sessions = sessions_conf['use-old-sessions']                
+            else:
+                b_old_sessions = False
+            if 'save-sessions' in sessions_conf.keys():
+                b_save_sessions = sessions_conf['save-sessions']    
+            else:
+                b_save_sessions = False
+            
+    except Exception as Error:
+        log.error(f'error reading config file at {CONFIG_PATH}')
+        raise Error
+
+
+# reading config
+_read_config()
+
