@@ -87,12 +87,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
-Autotest/webdriver-server.conf
 webdriver-server.conf
 .cache
 .pytest_cach
-Autotest/.vscode/launch.json
-Autotest/.vscode/settings.json
+
 .ssh
 .vscode
 iz.conf
@@ -100,4 +98,3 @@ Allure
 tests
 .pytest*
 tester.py
-Types/
