@@ -1,27 +1,27 @@
 import sys
-this =sys.modules[__name__]
 import io
 import csv
-from enum import Enum
 import allure
 from allure_commons.types import AttachmentType
 from sys import stdout as st
+import logging
+log = logging.getLogger('iz')
 
-this.writer = print
+# this.writer = print
 
-def _silent(msg:str):
-    pass
+# def _silent(msg:str):
+#     pass
 
-def Quiet():
-    """
-    disable logs
-    """
-    this.writer = _silent
-def Noise():
-    """
-    enable logs
-    """
-    this.writer = print
+# def Quiet():
+#     """
+#     disable logs
+#     """
+#     this.writer = _silent
+# def Noise():
+#     """
+#     enable logs
+#     """
+#     this.writer = print
 
 
 class Bug():
@@ -35,7 +35,7 @@ class Bug():
         return [self._cat, self._desc, self._exp,self._act]
 
 
-this.bugs = []
+bugs = []
 
 
 #region test manager
@@ -60,9 +60,10 @@ def add_bug(category, expected, actual, description=""):
     logs a fail and saves what happend in bug list
     *** bugs are not saved at the moment *** 
     """
-    fail(category+":\n"+" expected: "+expected+"\nactual:"+actual)
-    fail(description)
-    this.bugs.append(Bug(category, description, expected, actual)) # TODO bugs are not saved at the moment    
+    # fail(category+":\n"+" expected: "+expected+"\nactual:"+actual)
+    # fail(description)
+    global bugs
+    bugs.append(Bug(category, description, expected, actual)) # TODO bugs are not saved at the moment    
 
 def bugs_to_csv():
     stream = io.StringIO()
@@ -76,42 +77,42 @@ def bugs_to_csv():
 
 
 
-def _cust(msg:str, mark:str):
-    """
-    costumise print - format: {mark} {msg} {mark}
-    """       
-    try:
-        this.writer(mark+" "+str(msg)+" "+mark)
-    except UnicodeEncodeError:
-        this.writer(mark+" "+str(msg).encode('ascii','backslashreplace').decode('ascii')+" "+mark)
-    except Exception as e:
-        Error('LOGGER EXCEPTION')
-        Error(e)
+# def _cust(msg:str, mark:str):
+#     """
+#     costumise print - format: {mark} {msg} {mark}
+#     """       
+#     try:
+#         this.writer(mark+" "+str(msg)+" "+mark)
+#     except UnicodeEncodeError:
+#         this.writer(mark+" "+str(msg).encode('ascii','backslashreplace').decode('ascii')+" "+mark)
+#     except Exception as e:
+#         Error('LOGGER EXCEPTION')
+#         Error(e)
 
 
-def error(msg:str):
-    """
-    something went wrong, but it's not a bug in the tested system
-    """    
-    _cust(msg, "-err-")
+# def error(msg:str):
+#     """
+#     something went wrong, but it's not a bug in the tested system
+#     """    
+#     _cust(msg, "-err-")
 
-def fail(msg:str):
-    _cust(msg, "-xx-")
-def success(msg:str):
-    _cust(msg, "-vv-")    
-def info(msg:str):
-    this.writer("    ")
-    _cust(msg, "-i-")  
-def warn(msg:str):
-    _cust(msg, "-!-")  
+# def fail(msg:str):
+#     _cust(msg, "-xx-")
+# def success(msg:str):
+#     _cust(msg, "-vv-")    
+# def info(msg:str):
+#     this.writer("    ")
+#     _cust(msg, "-i-")  
+# def warn(msg:str):
+#     _cust(msg, "-!-")  
 
-def title(msg:str):
-    this.writer('\n')
-    _cust(msg, " -- ")
-    this.writer('\n')
+# def title(msg:str):
+#     this.writer('\n')
+#     _cust(msg, " -- ")
+#     this.writer('\n')
 
-def std(msg:str):
-    if this.writer is _silent:
-        return None
-    st.write(msg)
-    st.flush()
+# def std(msg:str):
+#     if this.writer is _silent:
+#         return None
+#     st.write(msg)
+#     st.flush()

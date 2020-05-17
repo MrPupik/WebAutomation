@@ -1,5 +1,9 @@
-import Core.Logger as log
+from izSelenium.Core.Logger import log
 import subprocess
+import types
+import izSelenium.Core.TimeoutManager as TimeoutManager
+from time import sleep
+
 
 def processArgs(argList):
     """
@@ -22,9 +26,6 @@ def processArgs(argList):
             flags.append(arg)
     return (params, flags)
 
-import types
-import Core.TimeoutManager as TimeoutManager
-from time import sleep
 
 def actionWrapper(action: types.FunctionType,
                   alternate=None,
@@ -45,39 +46,40 @@ def actionWrapper(action: types.FunctionType,
     while (total < timeout):
         try:
             err = None
-            log.Quiet()
+            # log.Quiet()
             if attempt % 2 == 0:
                 return action(*args)
             else:
                 return alternate(*args)
 
         except Exception as e:
-            log.Noise()
+            # log.Noise()
             err = str(e)
             if attempt == 0:
-                log.warn("core error: " + str(failTitle))
-                log.info(err)
-                log.std("\nretrying...")
+                log.warning("core error: " + str(failTitle))
+                log.debug(err)
+                log.debug("\nretrying...")
             else:
-                log.std(str(attempt)+"..")
+                log.debug(str(attempt)+"..")
             sleep(sleep_time)
             total += (sleep_time + TimeoutManager._implicit_wait)
             try:
                 if fix_actions and len(fix_actions) > 0:
                     act = fix_actions[0]
-                    log.std("[fix-"+str(act)[:35]+"]...")
-                    log.Quiet()
+                    log.debug("[fix-"+str(act)[:35]+"]...")
+                    # log.Quiet()
                     act()
                     del fix_actions[0]
             except Exception as e:                            
-                print("error at fix_action: "+str(e))
+                log.warning("error at fix_action: "+str(e))
             finally:
-                log.Noise()
+                pass
+                # log.Noise()
         finally:
-            log.Noise()
+            # log.Noise()
             attempt += 1
     if err:
-        log.info(err)
+        log.error(err)
 
 
 def WaitForResult(Function, *args):
@@ -91,21 +93,21 @@ def WaitForResult(Function, *args):
     timeout, sleep_time = TimeoutManager.Get()
     log.info("WaitForResult "+str(Function))
     while (total < timeout):
-        if attempt != 1:
-            log.Quiet()
+        # if attempt != 1:
+        #    log.Quiet()
         result = Function(*args)
         if result:
-            log.Noise()
+            # log.Noise()
             return result
 
         if attempt == 0:
-            log.std("\nretrying...")
+            log.debug("\nretrying...")
         else:
-            log.std(str(attempt)+"..")
+            log.debug(str(attempt)+"..")
         sleep(sleep_time)
         total += (sleep_time + TimeoutManager._implicit_wait)
-        attempt+=1
-    log.Noise()
+        attempt += 1
+    # log.Noise()
     return False
 
 
@@ -115,7 +117,7 @@ class Command( object ):
     def __init__( self, text ):
         self.text = text
     def execute( self ):
-        print ("RUNNING: "+self.text)
+        log.info("RUNNING: "+self.text)
         self.proc= subprocess.Popen(self.text)
         self.proc.wait()
 
