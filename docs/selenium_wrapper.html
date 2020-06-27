@@ -1,0 +1,1694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.2" />
+<title>selenium_wrapper API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>selenium_wrapper</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># region  imports
+import sys
+from os import path
+from time import sleep
+from json import loads, dumps
+
+# selenium
+import selenium.webdriver as webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import selenium.webdriver.remote.webelement as webelement
+from selenium.webdriver.common.by import By
+import selenium.webdriver.common.action_chains as actions
+from selenium.common.exceptions import (StaleElementReferenceException,
+                                        NoSuchElementException,
+                                        ElementNotVisibleException)
+
+# izSelenium
+from izSelenium.Core.izHelpers import actionWrapper
+import izSelenium.Core.TimeoutManager as TM
+from izSelenium.Core.Logger import log
+from izSelenium.Core.session_manager import (close_open_sessions,
+                                             save_session, 
+                                             get_open_sessions)
+
+# endregion
+
+
+# config
+this = sys.modules[__name__]
+CONFIG_PATH = path.dirname(__file__)+&#34;\\..\\iz.conf&#34;
+conf = None
+_webdriver_url = None
+b_old_sessions = None
+b_save_sessions = None
+# webdriver sessions
+drivers = {}
+
+
+class Selector:
+    &#39;&#39;&#39;
+    iz class for selenium selectors.
+    `selector` object is a combination of `By` method
+    and query statment
+    &#39;&#39;&#39;
+    def __init__(self, method: By, statement: str):        
+        self.method = method
+        self.statement = statement
+
+    def Get(self):
+        return (self.method, self.statement)
+
+    def __str__(self):
+        return (
+                &#34;{ method: &#34; + self.method +
+                &#34;, statement: \&#34;&#34; + self.statement + &#34;\&#34;}&#34;)
+
+
+# region Web-Driver
+
+
+driver_options = {
+    &#34;chrome&#34;: DesiredCapabilities.CHROME  # TODO: more browsers
+}
+
+
+def set_webdriver_url(url):
+    &#34;&#34;&#34;
+    set the url of webdriver that get_driver will communicate to
+    &#34;&#34;&#34;
+    global _webdriver_url, CONFIG_PATH, conf
+    conf[&#39;webdriver-url&#39;] = url
+    _write_config()
+
+
+def get_webdriver_url():
+    global _webdriver_url
+    return _webdriver_url
+
+
+def get_driver(driver_alias, browser=&#34;chrome&#34;):
+    &#34;&#34;&#34;
+    get instance of izWebDriver. set driver-url at iz.conf
+    driver_alias is izSeleniums id of the driver. whenever you call
+    get_driver with the same alias, the same webdriver instasnce will be
+    returned
+    &#34;&#34;&#34;
+    global drivers, b_save_sessions, b_old_sessions
+
+    if b_old_sessions:
+        drivers = get_open_sessions(_webdriver_url, izWebDriver,
+                                    DesiredCapabilities.CHROME)[0]
+    else:
+        close_open_sessions(_webdriver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
+
+    try:
+        return drivers[driver_alias]
+    except KeyError:
+        pass
+    driver_url = get_webdriver_url()
+    if len(drivers.keys()) &gt; 9:
+        raise Exception(&#34;TooManyDriversError:&#34;
+                        + &#34; izSelenium contain 10 active drivers&#34;)
+    
+    new_driver = izWebDriver(driver_url, driver_options[browser])
+    new_driver.implicitly_wait(TM._implicit_wait)
+    if b_save_sessions:        
+        save_session(driver_alias, new_driver.session_id)
+    else:
+        close_open_sessions(driver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
+    drivers[driver_alias] = new_driver
+
+    return new_driver
+
+
+def Quit_All():
+    &#34;&#34;&#34;
+    quit all open webdriver sessions
+    &#34;&#34;&#34;
+    global drivers
+    for driver in drivers.values():
+        driver.quit()
+    drivers = {}
+
+
+class izWebDriver(webdriver.Remote):
+    &#34;&#34;&#34;
+    iz implementation for selenium remote web-driver    
+    &#34;&#34;&#34;
+    def __init__(self, url, capabilities):
+        super().__init__(url, capabilities)
+
+    @staticmethod
+    def close_open_sessions():
+        &#34;&#34;&#34;
+        close all webdriver sessions in the driver at `webdriver_url`.
+        &#34;&#34;&#34;
+        global debug_mode
+        if debug_mode:         
+            log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+        else:
+            close_open_sessions(get_webdriver_url(), izWebDriver,
+                                DesiredCapabilities.CHROME)
+
+    @staticmethod
+    def load_open_session():
+        &#34;&#34;&#34;
+        loads open sessions. returns the sessions.
+        after running this function, sessions will allso
+        be avialbe via get_driver method
+        &#34;&#34;&#34;
+        global debug_mode
+        if debug_mode:
+            log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+        else:
+            open_drivers = get_open_sessions(get_webdriver_url(), izWebDriver,
+                                             DesiredCapabilities.CHROME)[0]
+            this.drivers.update(open_drivers)
+            return open_drivers
+        return None
+
+    def _find(self, selector: Selector, sensitive, root=None):
+        &#34;&#34;&#34;
+        internal use only
+        &#34;&#34;&#34;
+        log.info(&#34;finding &#34; + str(selector))
+        if (root):
+            findfunction = root
+        else:
+            findfunction = self.find_element
+        # func =   findFunctions[selector.method]
+        element = actionWrapper(findfunction, None, [self.accept_alert],
+                                &#34;find element failed. &#34;, selector.method,
+                                selector.statement)
+        if element:
+            log.info(&#34;find - success&#34;)
+            if (type(element) is list):
+                return izWebElement.ConvertList(element, selector, self)
+            else:
+                return izWebElement(element, selector, self)
+        else:
+            if sensitive:
+                raise AssertionError(f&#34;find - failed: [{selector.statement}].&#34;)
+
+    def find(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds the first element according to given selector.
+        returns izWebElement instance
+        &#34;&#34;&#34;      
+        return self._find(selector, sensitive=sensitive)
+
+    def finds(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds the all elements according to given selector. returns a list
+        if izWebElement instances
+        &#34;&#34;&#34;
+        return self._find(
+            selector, sensitive=sensitive, root=self._stpd_find_elements)
+
+    def _stpd_find_elements(self, by: By, statement: str):
+        &#34;&#34;&#34;
+        internal use only
+        &#34;&#34;&#34;
+        lst = self.find_elements(by, statement)
+        if lst:
+            return lst
+        else:
+            raise NoSuchElementException()
+
+    def accept_alert(self):
+        &#34;&#34;&#34;
+        accept the currently displayed alert
+        &#34;&#34;&#34;
+        alert = self.switch_to.alert
+        alert.accept()
+
+
+# endregion
+
+
+# region web - element
+
+
+class izWebElement(webelement.WebElement):
+    &#34;&#34;&#34;
+    expands selenium web-element
+    &#34;&#34;&#34;
+
+    def __init__(self, element: webelement.WebElement, selector: Selector,
+                 driver: izWebDriver):
+        super().__init__(element._parent, element._id)
+        self._id = element._id
+        self.selector = selector
+        self.driver = driver
+
+    def RunJS(self, script, failMassage, sensitive=False):
+        &#34;&#34;&#34;
+        running javascript with this element as arguments[0]
+        &#34;&#34;&#34;
+        log.info(&#34;RunJS:&#34; + script)
+        try:
+
+            self.driver.execute_script(script, self)
+        except Exception as e:
+            if sensitive:
+                raise e
+            else:
+                log.fail(self.selector.statement + failMassage)
+                log.info(&#34;   &#34; + str(e))
+
+    def set_attribute(self, name, value):        
+        &#34;&#34;&#34;
+        set attribute of the element (using js setAttribute function)
+        &#34;&#34;&#34;
+        # if value is empty, send a string representaion of an empty string
+        value = value if str(value) != &#39;&#39; else &#39;&#34;&#34;&#39;
+        script = f&#39;arguments[0].setAttribute(&#34;{name}&#34;, {value})&#39;
+        self.RunJS(script, f&#39;set_attribute failed for {name}: {value}&#39;)
+
+    def click(self, fix_actions=True):
+        &#34;&#34;&#34;
+        clicks this element using both selenium and JS
+        &#34;&#34;&#34;
+        if fix_actions:
+            fix = [self.scroll_into_view]
+        else:
+            fix = []
+        actionWrapper(
+            action=super().click,
+            fix_actions=fix,
+            alternate=self.jsClick,
+            failTitle=self.selector.statement + &#34;: iz-click failed&#34;)
+
+    def double_click(self):
+        &#34;&#34;&#34;
+        using action chain
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).double_click(self).perform,
+            None,
+            [self.scroll_into_view],
+            self.selector.statement + &#34;: iz-dbl-click failed&#34;)
+
+    def move_to_me(self):
+        &#34;&#34;&#34;
+        moves the cursor to the element&#39;s location
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).move_to_element(self).perform,
+            [self.scroll_into_view],
+            None,
+            self.selector.statement + &#34;: iz-move failed&#34;)
+
+    def jsClick(self):
+        &#34;&#34;&#34;
+        click this element with js script
+        &#34;&#34;&#34;
+        log.info(&#34;clicking &#34; + self.selector.statement)
+        self.RunJS(&#34;arguments[0].click()&#34;, &#34;js click failed&#34;)
+
+    def jsDouble_click(self):
+        &#34;&#34;&#34;
+        doubleclick this element with js script
+        &#34;&#34;&#34;
+        log.info(&#34;clicking &#34; + self.selector.statement)
+        self.RunJS(&#34;arguments[0].click();arguments[0].click();&#34;,
+                   &#34;js click failed&#34;)
+
+    def setValue(self, text):
+        &#34;&#34;&#34;
+        set the value using JS script instead of `send_keys`
+        &#34;&#34;&#34;
+        self.RunJS(&#34;arguments[0].value=&#39;&#34; + text + &#34;&#39;&#34;,
+                   self.selector.statement,
+                   &#34;set value FAIL&#34;)
+
+    def appendValue(self, text):
+        &#34;&#34;&#34;
+        append value using JS script instead of `send_keys`
+        &#34;&#34;&#34;
+        self.RunJS(
+            &#34;arguments[0].value=arguments[0].value+&#39;&#34; + text + &#34;&#39;&#34;,
+            self.selector.statement + &#34;append value FAIL&#34;,
+            sensitive=True)
+
+    def send_keys(self, *value):
+        &#34;&#34;&#34;
+        send keys with both selenium and JS script
+        &#34;&#34;&#34;
+        if len(value) &gt; 1:
+            alt = None
+        else:
+            alt = self.appendValue
+        actionWrapper(super().send_keys, alt, [self.scroll_into_view],
+                      self.selector.statement + &#34;: send keys failed&#34;, *value)
+
+    def send_keys_noJS(self, *value):
+        &#34;&#34;&#34;
+        send keys with no JS usage.
+        &#34;&#34;&#34;
+        actionWrapper(super().send_keys, None, [self.scroll_into_view],
+                      self.selector.statement + &#34;: send keys failed&#34;, *value)
+
+    def scroll_into_view(self):
+        &#34;&#34;&#34;
+        scroll this element into view
+        &#34;&#34;&#34;
+        self.RunJS(
+            &#34;arguments[0].scrollIntoView();&#34;,
+            self.selector.statement + &#34;SCROLL FAIL&#34;,
+            sensitive=True)
+
+    def highlight(self, sleep_and_stop=2):
+        &#34;&#34;&#34;
+        turn current element&#39;s border into solid red 2px.
+        return original style after &#39;sleep_and_stop&#39; seconds of time.sleep
+        if &#39;sleep_and_stop&#39; is 0 - border stays and no sleep.        
+        original stlyle saved to self.original_style
+        &#34;&#34;&#34;
+        self.original_style = self.get_attribute(&#39;style&#39;)        
+        self.set_attribute(&#39;style&#39;, &#39;&#34;border: 2px solid red;&#34;&#39;)
+        if sleep_and_stop &gt; 0:
+            sleep(sleep_and_stop)
+            self.set_attribute(&#39;style&#39;, self.original_style)        
+
+    def find(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds an element under current element (using current as root)
+        &#34;&#34;&#34;
+        return self.driver._find(selector, root=super().find_element,
+                                 sensitive=sensitive)
+
+# in future, return 0,1,2 - for fail sucess unvisible
+# ( not visible != not exist)
+    def waitNexist(self):
+        &#34;&#34;&#34;
+        wait for this elements to disappear 
+        according to izSelenium.TimeOutManager
+        &#34;&#34;&#34;
+        timeouts = TM.Get()
+        sleep_time = timeouts[1]
+        total = 0
+        attempt = 0
+        timeout = 15
+        while (total &lt; timeout):
+            try:
+                if ((super().is_displayed() or super().rect)):
+                    sleep(sleep_time)
+                    total += (sleep_time + TM._implicit_wait)
+                else:
+                    log.info(&#34;WaitNExist success - element not on screen&#34;)
+                    return True
+            except StaleElementReferenceException:
+                log.info(&#34;WaitNExist success - element is stale&#34;)
+                return True
+            except NoSuchElementException:
+                log.info(&#34;WaitNExist success - no such element&#34;)
+                return True
+            except ElementNotVisibleException:
+                log.info(&#34;WaitNExist success - element not visible&#34;)
+                return True
+            except Exception as e:
+                log.info(f&#34;WaitNExist propably success: \n{e}&#34;)
+                return True
+            finally:
+                attempt += 1
+        log.info(&#34;WaitNExist fail - element still here after &#34; + str(total) +
+                 &#34;seconds&#34;)
+        return False
+
+    def waitForText(self, text: str, contains=True, sensitive=False):
+        &#34;&#34;&#34;
+        wait for this element to display
+        the given text.(using find() every time)
+        contains - it&#39;s enough that the element will *contain* the text
+        timeout as defined in izSelenium.TimeoutManager
+        &#34;&#34;&#34;
+        try:
+            return actionWrapper(
+                _ar_compare_text, [self.scroll_into_view], None,
+                self.selector.statement + &#34; text &#34; + text + &#34; hasn&#39;t showed&#34;,
+                self, text, contains, sensitive)
+        except Exception as e:
+            if sensitive:
+                raise e
+            return False
+
+    @staticmethod
+    def ConvertList(lst: list, selector, driver):
+        &#34;&#34;&#34;
+        convert a list of classic webelements to izWebElelemnts
+        &#34;&#34;&#34;
+        newLst = []
+        for e in lst:
+            newLst.append(izWebElement(e, selector, driver))
+        return newLst
+
+    def get_text(self):
+        &#34;&#34;&#34;
+        get text of current element using
+        either &#39;text&#39; or &#39;innerHTML&#39; attributes
+        &#34;&#34;&#34;
+        from selenium.common.exceptions import StaleElementReferenceException
+        for i in range(0, 2):
+            try:
+                if (super().text):
+                    return super().text
+                elif (super().get_attribute(&#39;innerHTML&#39;)):
+                    return (super().get_attribute(&#39;innerHTML&#39;))
+
+            # TODO this approch can be usfull at more places
+            except StaleElementReferenceException:
+                log.info(&#34;iz.get_text: re-finding stale element &#34;
+                         + self.selector.statement)
+                self = self.driver.find(self.selector)
+        return None
+
+    def move_element_by_offset(self, x, y):
+        &#34;&#34;&#34;
+        moves the element by offset of x and y.
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).drag_and_drop_by_offset(
+                self, x, y).perform, [self.scroll_into_view], None,
+            self.selector.statement + &#34;: iz-move failed&#34;)
+
+
+def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=&#34;&#34;):
+    &#34;&#34;&#34;
+    used internally WaitForText function
+    &#34;&#34;&#34;
+    result = element.webdiver.find(element.selector.method,
+                                   element.selector.statement).get_text()
+    if (contains and text in result) or text == result:
+        return True
+    raise Exception(throw_msg)
+
+
+# endregion
+
+
+
+def _read_config():
+    global CONFIG_PATH, conf, _webdriver_url, b_old_sessions, b_save_sessions
+    try:
+        with open(CONFIG_PATH, &#39;r&#39;) as conf_file:
+            conf = loads(conf_file.read())
+        _webdriver_url = conf[&#39;webdriver-url&#39;].replace(&#39;\n&#39;, &#39;&#39;)
+        if &#39;sessions&#39; in conf.keys():
+            sessions_conf = conf[&#39;sessions&#39;]
+            if &#39;use-old-sessions&#39; in sessions_conf.keys():
+                b_old_sessions = sessions_conf[&#39;use-old-sessions&#39;]                
+            else:
+                b_old_sessions = False
+            if &#39;save-sessions&#39; in sessions_conf.keys():
+                b_save_sessions = sessions_conf[&#39;save-sessions&#39;]    
+            else:
+                b_save_sessions = False
+            
+    except Exception as Error:
+        log.error(f&#39;error reading config file at {CONFIG_PATH}&#39;)
+        raise Error
+
+def _write_config():
+    global conf
+    with open(CONFIG_PATH, &#39;w&#39;) as conf_file:
+            conf_file.write(dumps(conf))
+
+# reading config
+_read_config()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="selenium_wrapper.Quit_All"><code class="name flex">
+<span>def <span class="ident">Quit_All</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>quit all open webdriver sessions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Quit_All():
+    &#34;&#34;&#34;
+    quit all open webdriver sessions
+    &#34;&#34;&#34;
+    global drivers
+    for driver in drivers.values():
+        driver.quit()
+    drivers = {}</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.get_driver"><code class="name flex">
+<span>def <span class="ident">get_driver</span></span>(<span>driver_alias, browser='chrome')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get instance of izWebDriver. set driver-url at iz.conf
+driver_alias is izSeleniums id of the driver. whenever you call
+get_driver with the same alias, the same webdriver instasnce will be
+returned</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_driver(driver_alias, browser=&#34;chrome&#34;):
+    &#34;&#34;&#34;
+    get instance of izWebDriver. set driver-url at iz.conf
+    driver_alias is izSeleniums id of the driver. whenever you call
+    get_driver with the same alias, the same webdriver instasnce will be
+    returned
+    &#34;&#34;&#34;
+    global drivers, b_save_sessions, b_old_sessions
+
+    if b_old_sessions:
+        drivers = get_open_sessions(_webdriver_url, izWebDriver,
+                                    DesiredCapabilities.CHROME)[0]
+    else:
+        close_open_sessions(_webdriver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
+
+    try:
+        return drivers[driver_alias]
+    except KeyError:
+        pass
+    driver_url = get_webdriver_url()
+    if len(drivers.keys()) &gt; 9:
+        raise Exception(&#34;TooManyDriversError:&#34;
+                        + &#34; izSelenium contain 10 active drivers&#34;)
+    
+    new_driver = izWebDriver(driver_url, driver_options[browser])
+    new_driver.implicitly_wait(TM._implicit_wait)
+    if b_save_sessions:        
+        save_session(driver_alias, new_driver.session_id)
+    else:
+        close_open_sessions(driver_url, izWebDriver,
+                            DesiredCapabilities.CHROME)
+    drivers[driver_alias] = new_driver
+
+    return new_driver</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.get_webdriver_url"><code class="name flex">
+<span>def <span class="ident">get_webdriver_url</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_webdriver_url():
+    global _webdriver_url
+    return _webdriver_url</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.set_webdriver_url"><code class="name flex">
+<span>def <span class="ident">set_webdriver_url</span></span>(<span>url)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>set the url of webdriver that get_driver will communicate to</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_webdriver_url(url):
+    &#34;&#34;&#34;
+    set the url of webdriver that get_driver will communicate to
+    &#34;&#34;&#34;
+    global _webdriver_url, CONFIG_PATH, conf
+    conf[&#39;webdriver-url&#39;] = url
+    _write_config()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="selenium_wrapper.Selector"><code class="flex name class">
+<span>class <span class="ident">Selector</span></span>
+<span>(</span><span>method: selenium.webdriver.common.by.By, statement: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>iz class for selenium selectors.
+<code>selector</code> object is a combination of <code>By</code> method
+and query statment</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Selector:
+    &#39;&#39;&#39;
+    iz class for selenium selectors.
+    `selector` object is a combination of `By` method
+    and query statment
+    &#39;&#39;&#39;
+    def __init__(self, method: By, statement: str):        
+        self.method = method
+        self.statement = statement
+
+    def Get(self):
+        return (self.method, self.statement)
+
+    def __str__(self):
+        return (
+                &#34;{ method: &#34; + self.method +
+                &#34;, statement: \&#34;&#34; + self.statement + &#34;\&#34;}&#34;)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="selenium_wrapper.Selector.Get"><code class="name flex">
+<span>def <span class="ident">Get</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Get(self):
+    return (self.method, self.statement)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="selenium_wrapper.izWebDriver"><code class="flex name class">
+<span>class <span class="ident">izWebDriver</span></span>
+<span>(</span><span>url, capabilities)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>iz implementation for selenium remote web-driver
+</p>
+<p>Create a new driver that will issue commands using the wire protocol.</p>
+<p>:Args:
+- command_executor - Either a string representing URL of the remote server or a custom
+remote_connection.RemoteConnection object. Defaults to 'http://127.0.0.1:4444/wd/hub'.
+- desired_capabilities - A dictionary of capabilities to request when
+starting the browser session. Required parameter.
+- browser_profile - A selenium.webdriver.firefox.firefox_profile.FirefoxProfile object.
+Only used if Firefox is requested. Optional.
+- proxy - A selenium.webdriver.common.proxy.Proxy object. The browser session will
+be started with given proxy settings, if possible. Optional.
+- keep_alive - Whether to configure remote_connection.RemoteConnection to use
+HTTP keep-alive. Defaults to False.
+- file_detector - Pass custom file detector object during instantiation. If None,
+then default LocalFileDetector() will be used.
+- options - instance of a driver options.Options class</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class izWebDriver(webdriver.Remote):
+    &#34;&#34;&#34;
+    iz implementation for selenium remote web-driver    
+    &#34;&#34;&#34;
+    def __init__(self, url, capabilities):
+        super().__init__(url, capabilities)
+
+    @staticmethod
+    def close_open_sessions():
+        &#34;&#34;&#34;
+        close all webdriver sessions in the driver at `webdriver_url`.
+        &#34;&#34;&#34;
+        global debug_mode
+        if debug_mode:         
+            log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+        else:
+            close_open_sessions(get_webdriver_url(), izWebDriver,
+                                DesiredCapabilities.CHROME)
+
+    @staticmethod
+    def load_open_session():
+        &#34;&#34;&#34;
+        loads open sessions. returns the sessions.
+        after running this function, sessions will allso
+        be avialbe via get_driver method
+        &#34;&#34;&#34;
+        global debug_mode
+        if debug_mode:
+            log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+        else:
+            open_drivers = get_open_sessions(get_webdriver_url(), izWebDriver,
+                                             DesiredCapabilities.CHROME)[0]
+            this.drivers.update(open_drivers)
+            return open_drivers
+        return None
+
+    def _find(self, selector: Selector, sensitive, root=None):
+        &#34;&#34;&#34;
+        internal use only
+        &#34;&#34;&#34;
+        log.info(&#34;finding &#34; + str(selector))
+        if (root):
+            findfunction = root
+        else:
+            findfunction = self.find_element
+        # func =   findFunctions[selector.method]
+        element = actionWrapper(findfunction, None, [self.accept_alert],
+                                &#34;find element failed. &#34;, selector.method,
+                                selector.statement)
+        if element:
+            log.info(&#34;find - success&#34;)
+            if (type(element) is list):
+                return izWebElement.ConvertList(element, selector, self)
+            else:
+                return izWebElement(element, selector, self)
+        else:
+            if sensitive:
+                raise AssertionError(f&#34;find - failed: [{selector.statement}].&#34;)
+
+    def find(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds the first element according to given selector.
+        returns izWebElement instance
+        &#34;&#34;&#34;      
+        return self._find(selector, sensitive=sensitive)
+
+    def finds(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds the all elements according to given selector. returns a list
+        if izWebElement instances
+        &#34;&#34;&#34;
+        return self._find(
+            selector, sensitive=sensitive, root=self._stpd_find_elements)
+
+    def _stpd_find_elements(self, by: By, statement: str):
+        &#34;&#34;&#34;
+        internal use only
+        &#34;&#34;&#34;
+        lst = self.find_elements(by, statement)
+        if lst:
+            return lst
+        else:
+            raise NoSuchElementException()
+
+    def accept_alert(self):
+        &#34;&#34;&#34;
+        accept the currently displayed alert
+        &#34;&#34;&#34;
+        alert = self.switch_to.alert
+        alert.accept()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>selenium.webdriver.remote.webdriver.WebDriver</li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="selenium_wrapper.izWebDriver.close_open_sessions"><code class="name flex">
+<span>def <span class="ident">close_open_sessions</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>close all webdriver sessions in the driver at <code>webdriver_url</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def close_open_sessions():
+    &#34;&#34;&#34;
+    close all webdriver sessions in the driver at `webdriver_url`.
+    &#34;&#34;&#34;
+    global debug_mode
+    if debug_mode:         
+        log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+    else:
+        close_open_sessions(get_webdriver_url(), izWebDriver,
+                            DesiredCapabilities.CHROME)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebDriver.load_open_session"><code class="name flex">
+<span>def <span class="ident">load_open_session</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>loads open sessions. returns the sessions.
+after running this function, sessions will allso
+be avialbe via get_driver method</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def load_open_session():
+    &#34;&#34;&#34;
+    loads open sessions. returns the sessions.
+    after running this function, sessions will allso
+    be avialbe via get_driver method
+    &#34;&#34;&#34;
+    global debug_mode
+    if debug_mode:
+        log.warn(&#39;load_open_session: debug mode on. no session saving&#39;)
+    else:
+        open_drivers = get_open_sessions(get_webdriver_url(), izWebDriver,
+                                         DesiredCapabilities.CHROME)[0]
+        this.drivers.update(open_drivers)
+        return open_drivers
+    return None</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="selenium_wrapper.izWebDriver.accept_alert"><code class="name flex">
+<span>def <span class="ident">accept_alert</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>accept the currently displayed alert</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def accept_alert(self):
+    &#34;&#34;&#34;
+    accept the currently displayed alert
+    &#34;&#34;&#34;
+    alert = self.switch_to.alert
+    alert.accept()</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebDriver.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, selector: <a title="selenium_wrapper.Selector" href="#selenium_wrapper.Selector">Selector</a>, sensitive=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>finds the first element according to given selector.
+returns izWebElement instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find(self, selector: Selector, sensitive=True):
+    &#34;&#34;&#34;
+    finds the first element according to given selector.
+    returns izWebElement instance
+    &#34;&#34;&#34;      
+    return self._find(selector, sensitive=sensitive)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebDriver.finds"><code class="name flex">
+<span>def <span class="ident">finds</span></span>(<span>self, selector: <a title="selenium_wrapper.Selector" href="#selenium_wrapper.Selector">Selector</a>, sensitive=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>finds the all elements according to given selector. returns a list
+if izWebElement instances</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def finds(self, selector: Selector, sensitive=True):
+    &#34;&#34;&#34;
+    finds the all elements according to given selector. returns a list
+    if izWebElement instances
+    &#34;&#34;&#34;
+    return self._find(
+        selector, sensitive=sensitive, root=self._stpd_find_elements)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="selenium_wrapper.izWebElement"><code class="flex name class">
+<span>class <span class="ident">izWebElement</span></span>
+<span>(</span><span>element: selenium.webdriver.remote.webelement.WebElement, selector: <a title="selenium_wrapper.Selector" href="#selenium_wrapper.Selector">Selector</a>, driver: <a title="selenium_wrapper.izWebDriver" href="#selenium_wrapper.izWebDriver">izWebDriver</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>expands selenium web-element</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class izWebElement(webelement.WebElement):
+    &#34;&#34;&#34;
+    expands selenium web-element
+    &#34;&#34;&#34;
+
+    def __init__(self, element: webelement.WebElement, selector: Selector,
+                 driver: izWebDriver):
+        super().__init__(element._parent, element._id)
+        self._id = element._id
+        self.selector = selector
+        self.driver = driver
+
+    def RunJS(self, script, failMassage, sensitive=False):
+        &#34;&#34;&#34;
+        running javascript with this element as arguments[0]
+        &#34;&#34;&#34;
+        log.info(&#34;RunJS:&#34; + script)
+        try:
+
+            self.driver.execute_script(script, self)
+        except Exception as e:
+            if sensitive:
+                raise e
+            else:
+                log.fail(self.selector.statement + failMassage)
+                log.info(&#34;   &#34; + str(e))
+
+    def set_attribute(self, name, value):        
+        &#34;&#34;&#34;
+        set attribute of the element (using js setAttribute function)
+        &#34;&#34;&#34;
+        # if value is empty, send a string representaion of an empty string
+        value = value if str(value) != &#39;&#39; else &#39;&#34;&#34;&#39;
+        script = f&#39;arguments[0].setAttribute(&#34;{name}&#34;, {value})&#39;
+        self.RunJS(script, f&#39;set_attribute failed for {name}: {value}&#39;)
+
+    def click(self, fix_actions=True):
+        &#34;&#34;&#34;
+        clicks this element using both selenium and JS
+        &#34;&#34;&#34;
+        if fix_actions:
+            fix = [self.scroll_into_view]
+        else:
+            fix = []
+        actionWrapper(
+            action=super().click,
+            fix_actions=fix,
+            alternate=self.jsClick,
+            failTitle=self.selector.statement + &#34;: iz-click failed&#34;)
+
+    def double_click(self):
+        &#34;&#34;&#34;
+        using action chain
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).double_click(self).perform,
+            None,
+            [self.scroll_into_view],
+            self.selector.statement + &#34;: iz-dbl-click failed&#34;)
+
+    def move_to_me(self):
+        &#34;&#34;&#34;
+        moves the cursor to the element&#39;s location
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).move_to_element(self).perform,
+            [self.scroll_into_view],
+            None,
+            self.selector.statement + &#34;: iz-move failed&#34;)
+
+    def jsClick(self):
+        &#34;&#34;&#34;
+        click this element with js script
+        &#34;&#34;&#34;
+        log.info(&#34;clicking &#34; + self.selector.statement)
+        self.RunJS(&#34;arguments[0].click()&#34;, &#34;js click failed&#34;)
+
+    def jsDouble_click(self):
+        &#34;&#34;&#34;
+        doubleclick this element with js script
+        &#34;&#34;&#34;
+        log.info(&#34;clicking &#34; + self.selector.statement)
+        self.RunJS(&#34;arguments[0].click();arguments[0].click();&#34;,
+                   &#34;js click failed&#34;)
+
+    def setValue(self, text):
+        &#34;&#34;&#34;
+        set the value using JS script instead of `send_keys`
+        &#34;&#34;&#34;
+        self.RunJS(&#34;arguments[0].value=&#39;&#34; + text + &#34;&#39;&#34;,
+                   self.selector.statement,
+                   &#34;set value FAIL&#34;)
+
+    def appendValue(self, text):
+        &#34;&#34;&#34;
+        append value using JS script instead of `send_keys`
+        &#34;&#34;&#34;
+        self.RunJS(
+            &#34;arguments[0].value=arguments[0].value+&#39;&#34; + text + &#34;&#39;&#34;,
+            self.selector.statement + &#34;append value FAIL&#34;,
+            sensitive=True)
+
+    def send_keys(self, *value):
+        &#34;&#34;&#34;
+        send keys with both selenium and JS script
+        &#34;&#34;&#34;
+        if len(value) &gt; 1:
+            alt = None
+        else:
+            alt = self.appendValue
+        actionWrapper(super().send_keys, alt, [self.scroll_into_view],
+                      self.selector.statement + &#34;: send keys failed&#34;, *value)
+
+    def send_keys_noJS(self, *value):
+        &#34;&#34;&#34;
+        send keys with no JS usage.
+        &#34;&#34;&#34;
+        actionWrapper(super().send_keys, None, [self.scroll_into_view],
+                      self.selector.statement + &#34;: send keys failed&#34;, *value)
+
+    def scroll_into_view(self):
+        &#34;&#34;&#34;
+        scroll this element into view
+        &#34;&#34;&#34;
+        self.RunJS(
+            &#34;arguments[0].scrollIntoView();&#34;,
+            self.selector.statement + &#34;SCROLL FAIL&#34;,
+            sensitive=True)
+
+    def highlight(self, sleep_and_stop=2):
+        &#34;&#34;&#34;
+        turn current element&#39;s border into solid red 2px.
+        return original style after &#39;sleep_and_stop&#39; seconds of time.sleep
+        if &#39;sleep_and_stop&#39; is 0 - border stays and no sleep.        
+        original stlyle saved to self.original_style
+        &#34;&#34;&#34;
+        self.original_style = self.get_attribute(&#39;style&#39;)        
+        self.set_attribute(&#39;style&#39;, &#39;&#34;border: 2px solid red;&#34;&#39;)
+        if sleep_and_stop &gt; 0:
+            sleep(sleep_and_stop)
+            self.set_attribute(&#39;style&#39;, self.original_style)        
+
+    def find(self, selector: Selector, sensitive=True):
+        &#34;&#34;&#34;
+        finds an element under current element (using current as root)
+        &#34;&#34;&#34;
+        return self.driver._find(selector, root=super().find_element,
+                                 sensitive=sensitive)
+
+# in future, return 0,1,2 - for fail sucess unvisible
+# ( not visible != not exist)
+    def waitNexist(self):
+        &#34;&#34;&#34;
+        wait for this elements to disappear 
+        according to izSelenium.TimeOutManager
+        &#34;&#34;&#34;
+        timeouts = TM.Get()
+        sleep_time = timeouts[1]
+        total = 0
+        attempt = 0
+        timeout = 15
+        while (total &lt; timeout):
+            try:
+                if ((super().is_displayed() or super().rect)):
+                    sleep(sleep_time)
+                    total += (sleep_time + TM._implicit_wait)
+                else:
+                    log.info(&#34;WaitNExist success - element not on screen&#34;)
+                    return True
+            except StaleElementReferenceException:
+                log.info(&#34;WaitNExist success - element is stale&#34;)
+                return True
+            except NoSuchElementException:
+                log.info(&#34;WaitNExist success - no such element&#34;)
+                return True
+            except ElementNotVisibleException:
+                log.info(&#34;WaitNExist success - element not visible&#34;)
+                return True
+            except Exception as e:
+                log.info(f&#34;WaitNExist propably success: \n{e}&#34;)
+                return True
+            finally:
+                attempt += 1
+        log.info(&#34;WaitNExist fail - element still here after &#34; + str(total) +
+                 &#34;seconds&#34;)
+        return False
+
+    def waitForText(self, text: str, contains=True, sensitive=False):
+        &#34;&#34;&#34;
+        wait for this element to display
+        the given text.(using find() every time)
+        contains - it&#39;s enough that the element will *contain* the text
+        timeout as defined in izSelenium.TimeoutManager
+        &#34;&#34;&#34;
+        try:
+            return actionWrapper(
+                _ar_compare_text, [self.scroll_into_view], None,
+                self.selector.statement + &#34; text &#34; + text + &#34; hasn&#39;t showed&#34;,
+                self, text, contains, sensitive)
+        except Exception as e:
+            if sensitive:
+                raise e
+            return False
+
+    @staticmethod
+    def ConvertList(lst: list, selector, driver):
+        &#34;&#34;&#34;
+        convert a list of classic webelements to izWebElelemnts
+        &#34;&#34;&#34;
+        newLst = []
+        for e in lst:
+            newLst.append(izWebElement(e, selector, driver))
+        return newLst
+
+    def get_text(self):
+        &#34;&#34;&#34;
+        get text of current element using
+        either &#39;text&#39; or &#39;innerHTML&#39; attributes
+        &#34;&#34;&#34;
+        from selenium.common.exceptions import StaleElementReferenceException
+        for i in range(0, 2):
+            try:
+                if (super().text):
+                    return super().text
+                elif (super().get_attribute(&#39;innerHTML&#39;)):
+                    return (super().get_attribute(&#39;innerHTML&#39;))
+
+            # TODO this approch can be usfull at more places
+            except StaleElementReferenceException:
+                log.info(&#34;iz.get_text: re-finding stale element &#34;
+                         + self.selector.statement)
+                self = self.driver.find(self.selector)
+        return None
+
+    def move_element_by_offset(self, x, y):
+        &#34;&#34;&#34;
+        moves the element by offset of x and y.
+        &#34;&#34;&#34;
+        actionWrapper(
+            actions.ActionChains(self.driver).drag_and_drop_by_offset(
+                self, x, y).perform, [self.scroll_into_view], None,
+            self.selector.statement + &#34;: iz-move failed&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>selenium.webdriver.remote.webelement.WebElement</li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="selenium_wrapper.izWebElement.ConvertList"><code class="name flex">
+<span>def <span class="ident">ConvertList</span></span>(<span>lst: list, selector, driver)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>convert a list of classic webelements to izWebElelemnts</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def ConvertList(lst: list, selector, driver):
+    &#34;&#34;&#34;
+    convert a list of classic webelements to izWebElelemnts
+    &#34;&#34;&#34;
+    newLst = []
+    for e in lst:
+        newLst.append(izWebElement(e, selector, driver))
+    return newLst</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="selenium_wrapper.izWebElement.RunJS"><code class="name flex">
+<span>def <span class="ident">RunJS</span></span>(<span>self, script, failMassage, sensitive=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>running javascript with this element as arguments[0]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RunJS(self, script, failMassage, sensitive=False):
+    &#34;&#34;&#34;
+    running javascript with this element as arguments[0]
+    &#34;&#34;&#34;
+    log.info(&#34;RunJS:&#34; + script)
+    try:
+
+        self.driver.execute_script(script, self)
+    except Exception as e:
+        if sensitive:
+            raise e
+        else:
+            log.fail(self.selector.statement + failMassage)
+            log.info(&#34;   &#34; + str(e))</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.appendValue"><code class="name flex">
+<span>def <span class="ident">appendValue</span></span>(<span>self, text)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>append value using JS script instead of <code>send_keys</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def appendValue(self, text):
+    &#34;&#34;&#34;
+    append value using JS script instead of `send_keys`
+    &#34;&#34;&#34;
+    self.RunJS(
+        &#34;arguments[0].value=arguments[0].value+&#39;&#34; + text + &#34;&#39;&#34;,
+        self.selector.statement + &#34;append value FAIL&#34;,
+        sensitive=True)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, fix_actions=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>clicks this element using both selenium and JS</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def click(self, fix_actions=True):
+    &#34;&#34;&#34;
+    clicks this element using both selenium and JS
+    &#34;&#34;&#34;
+    if fix_actions:
+        fix = [self.scroll_into_view]
+    else:
+        fix = []
+    actionWrapper(
+        action=super().click,
+        fix_actions=fix,
+        alternate=self.jsClick,
+        failTitle=self.selector.statement + &#34;: iz-click failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.double_click"><code class="name flex">
+<span>def <span class="ident">double_click</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>using action chain</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def double_click(self):
+    &#34;&#34;&#34;
+    using action chain
+    &#34;&#34;&#34;
+    actionWrapper(
+        actions.ActionChains(self.driver).double_click(self).perform,
+        None,
+        [self.scroll_into_view],
+        self.selector.statement + &#34;: iz-dbl-click failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, selector: <a title="selenium_wrapper.Selector" href="#selenium_wrapper.Selector">Selector</a>, sensitive=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>finds an element under current element (using current as root)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find(self, selector: Selector, sensitive=True):
+    &#34;&#34;&#34;
+    finds an element under current element (using current as root)
+    &#34;&#34;&#34;
+    return self.driver._find(selector, root=super().find_element,
+                             sensitive=sensitive)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.get_text"><code class="name flex">
+<span>def <span class="ident">get_text</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get text of current element using
+either 'text' or 'innerHTML' attributes</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_text(self):
+    &#34;&#34;&#34;
+    get text of current element using
+    either &#39;text&#39; or &#39;innerHTML&#39; attributes
+    &#34;&#34;&#34;
+    from selenium.common.exceptions import StaleElementReferenceException
+    for i in range(0, 2):
+        try:
+            if (super().text):
+                return super().text
+            elif (super().get_attribute(&#39;innerHTML&#39;)):
+                return (super().get_attribute(&#39;innerHTML&#39;))
+
+        # TODO this approch can be usfull at more places
+        except StaleElementReferenceException:
+            log.info(&#34;iz.get_text: re-finding stale element &#34;
+                     + self.selector.statement)
+            self = self.driver.find(self.selector)
+    return None</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.highlight"><code class="name flex">
+<span>def <span class="ident">highlight</span></span>(<span>self, sleep_and_stop=2)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>turn current element's border into solid red 2px.
+return original style after 'sleep_and_stop' seconds of time.sleep
+if 'sleep_and_stop' is 0 - border stays and no sleep.
+<br>
+original stlyle saved to self.original_style</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def highlight(self, sleep_and_stop=2):
+    &#34;&#34;&#34;
+    turn current element&#39;s border into solid red 2px.
+    return original style after &#39;sleep_and_stop&#39; seconds of time.sleep
+    if &#39;sleep_and_stop&#39; is 0 - border stays and no sleep.        
+    original stlyle saved to self.original_style
+    &#34;&#34;&#34;
+    self.original_style = self.get_attribute(&#39;style&#39;)        
+    self.set_attribute(&#39;style&#39;, &#39;&#34;border: 2px solid red;&#34;&#39;)
+    if sleep_and_stop &gt; 0:
+        sleep(sleep_and_stop)
+        self.set_attribute(&#39;style&#39;, self.original_style)        </code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.jsClick"><code class="name flex">
+<span>def <span class="ident">jsClick</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>click this element with js script</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def jsClick(self):
+    &#34;&#34;&#34;
+    click this element with js script
+    &#34;&#34;&#34;
+    log.info(&#34;clicking &#34; + self.selector.statement)
+    self.RunJS(&#34;arguments[0].click()&#34;, &#34;js click failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.jsDouble_click"><code class="name flex">
+<span>def <span class="ident">jsDouble_click</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>doubleclick this element with js script</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def jsDouble_click(self):
+    &#34;&#34;&#34;
+    doubleclick this element with js script
+    &#34;&#34;&#34;
+    log.info(&#34;clicking &#34; + self.selector.statement)
+    self.RunJS(&#34;arguments[0].click();arguments[0].click();&#34;,
+               &#34;js click failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.move_element_by_offset"><code class="name flex">
+<span>def <span class="ident">move_element_by_offset</span></span>(<span>self, x, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>moves the element by offset of x and y.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_element_by_offset(self, x, y):
+    &#34;&#34;&#34;
+    moves the element by offset of x and y.
+    &#34;&#34;&#34;
+    actionWrapper(
+        actions.ActionChains(self.driver).drag_and_drop_by_offset(
+            self, x, y).perform, [self.scroll_into_view], None,
+        self.selector.statement + &#34;: iz-move failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.move_to_me"><code class="name flex">
+<span>def <span class="ident">move_to_me</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>moves the cursor to the element's location</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_to_me(self):
+    &#34;&#34;&#34;
+    moves the cursor to the element&#39;s location
+    &#34;&#34;&#34;
+    actionWrapper(
+        actions.ActionChains(self.driver).move_to_element(self).perform,
+        [self.scroll_into_view],
+        None,
+        self.selector.statement + &#34;: iz-move failed&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.scroll_into_view"><code class="name flex">
+<span>def <span class="ident">scroll_into_view</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>scroll this element into view</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def scroll_into_view(self):
+    &#34;&#34;&#34;
+    scroll this element into view
+    &#34;&#34;&#34;
+    self.RunJS(
+        &#34;arguments[0].scrollIntoView();&#34;,
+        self.selector.statement + &#34;SCROLL FAIL&#34;,
+        sensitive=True)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.send_keys"><code class="name flex">
+<span>def <span class="ident">send_keys</span></span>(<span>self, *value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>send keys with both selenium and JS script</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_keys(self, *value):
+    &#34;&#34;&#34;
+    send keys with both selenium and JS script
+    &#34;&#34;&#34;
+    if len(value) &gt; 1:
+        alt = None
+    else:
+        alt = self.appendValue
+    actionWrapper(super().send_keys, alt, [self.scroll_into_view],
+                  self.selector.statement + &#34;: send keys failed&#34;, *value)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.send_keys_noJS"><code class="name flex">
+<span>def <span class="ident">send_keys_noJS</span></span>(<span>self, *value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>send keys with no JS usage.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_keys_noJS(self, *value):
+    &#34;&#34;&#34;
+    send keys with no JS usage.
+    &#34;&#34;&#34;
+    actionWrapper(super().send_keys, None, [self.scroll_into_view],
+                  self.selector.statement + &#34;: send keys failed&#34;, *value)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.setValue"><code class="name flex">
+<span>def <span class="ident">setValue</span></span>(<span>self, text)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>set the value using JS script instead of <code>send_keys</code></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setValue(self, text):
+    &#34;&#34;&#34;
+    set the value using JS script instead of `send_keys`
+    &#34;&#34;&#34;
+    self.RunJS(&#34;arguments[0].value=&#39;&#34; + text + &#34;&#39;&#34;,
+               self.selector.statement,
+               &#34;set value FAIL&#34;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.set_attribute"><code class="name flex">
+<span>def <span class="ident">set_attribute</span></span>(<span>self, name, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>set attribute of the element (using js setAttribute function)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_attribute(self, name, value):        
+    &#34;&#34;&#34;
+    set attribute of the element (using js setAttribute function)
+    &#34;&#34;&#34;
+    # if value is empty, send a string representaion of an empty string
+    value = value if str(value) != &#39;&#39; else &#39;&#34;&#34;&#39;
+    script = f&#39;arguments[0].setAttribute(&#34;{name}&#34;, {value})&#39;
+    self.RunJS(script, f&#39;set_attribute failed for {name}: {value}&#39;)</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.waitForText"><code class="name flex">
+<span>def <span class="ident">waitForText</span></span>(<span>self, text: str, contains=True, sensitive=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>wait for this element to display
+the given text.(using find() every time)
+contains - it's enough that the element will <em>contain</em> the text
+timeout as defined in izSelenium.TimeoutManager</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def waitForText(self, text: str, contains=True, sensitive=False):
+    &#34;&#34;&#34;
+    wait for this element to display
+    the given text.(using find() every time)
+    contains - it&#39;s enough that the element will *contain* the text
+    timeout as defined in izSelenium.TimeoutManager
+    &#34;&#34;&#34;
+    try:
+        return actionWrapper(
+            _ar_compare_text, [self.scroll_into_view], None,
+            self.selector.statement + &#34; text &#34; + text + &#34; hasn&#39;t showed&#34;,
+            self, text, contains, sensitive)
+    except Exception as e:
+        if sensitive:
+            raise e
+        return False</code></pre>
+</details>
+</dd>
+<dt id="selenium_wrapper.izWebElement.waitNexist"><code class="name flex">
+<span>def <span class="ident">waitNexist</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>wait for this elements to disappear
+according to izSelenium.TimeOutManager</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def waitNexist(self):
+    &#34;&#34;&#34;
+    wait for this elements to disappear 
+    according to izSelenium.TimeOutManager
+    &#34;&#34;&#34;
+    timeouts = TM.Get()
+    sleep_time = timeouts[1]
+    total = 0
+    attempt = 0
+    timeout = 15
+    while (total &lt; timeout):
+        try:
+            if ((super().is_displayed() or super().rect)):
+                sleep(sleep_time)
+                total += (sleep_time + TM._implicit_wait)
+            else:
+                log.info(&#34;WaitNExist success - element not on screen&#34;)
+                return True
+        except StaleElementReferenceException:
+            log.info(&#34;WaitNExist success - element is stale&#34;)
+            return True
+        except NoSuchElementException:
+            log.info(&#34;WaitNExist success - no such element&#34;)
+            return True
+        except ElementNotVisibleException:
+            log.info(&#34;WaitNExist success - element not visible&#34;)
+            return True
+        except Exception as e:
+            log.info(f&#34;WaitNExist propably success: \n{e}&#34;)
+            return True
+        finally:
+            attempt += 1
+    log.info(&#34;WaitNExist fail - element still here after &#34; + str(total) +
+             &#34;seconds&#34;)
+    return False</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="selenium_wrapper.Quit_All" href="#selenium_wrapper.Quit_All">Quit_All</a></code></li>
+<li><code><a title="selenium_wrapper.get_driver" href="#selenium_wrapper.get_driver">get_driver</a></code></li>
+<li><code><a title="selenium_wrapper.get_webdriver_url" href="#selenium_wrapper.get_webdriver_url">get_webdriver_url</a></code></li>
+<li><code><a title="selenium_wrapper.set_webdriver_url" href="#selenium_wrapper.set_webdriver_url">set_webdriver_url</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="selenium_wrapper.Selector" href="#selenium_wrapper.Selector">Selector</a></code></h4>
+<ul class="">
+<li><code><a title="selenium_wrapper.Selector.Get" href="#selenium_wrapper.Selector.Get">Get</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="selenium_wrapper.izWebDriver" href="#selenium_wrapper.izWebDriver">izWebDriver</a></code></h4>
+<ul class="">
+<li><code><a title="selenium_wrapper.izWebDriver.accept_alert" href="#selenium_wrapper.izWebDriver.accept_alert">accept_alert</a></code></li>
+<li><code><a title="selenium_wrapper.izWebDriver.close_open_sessions" href="#selenium_wrapper.izWebDriver.close_open_sessions">close_open_sessions</a></code></li>
+<li><code><a title="selenium_wrapper.izWebDriver.find" href="#selenium_wrapper.izWebDriver.find">find</a></code></li>
+<li><code><a title="selenium_wrapper.izWebDriver.finds" href="#selenium_wrapper.izWebDriver.finds">finds</a></code></li>
+<li><code><a title="selenium_wrapper.izWebDriver.load_open_session" href="#selenium_wrapper.izWebDriver.load_open_session">load_open_session</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="selenium_wrapper.izWebElement" href="#selenium_wrapper.izWebElement">izWebElement</a></code></h4>
+<ul class="">
+<li><code><a title="selenium_wrapper.izWebElement.ConvertList" href="#selenium_wrapper.izWebElement.ConvertList">ConvertList</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.RunJS" href="#selenium_wrapper.izWebElement.RunJS">RunJS</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.appendValue" href="#selenium_wrapper.izWebElement.appendValue">appendValue</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.click" href="#selenium_wrapper.izWebElement.click">click</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.double_click" href="#selenium_wrapper.izWebElement.double_click">double_click</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.find" href="#selenium_wrapper.izWebElement.find">find</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.get_text" href="#selenium_wrapper.izWebElement.get_text">get_text</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.highlight" href="#selenium_wrapper.izWebElement.highlight">highlight</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.jsClick" href="#selenium_wrapper.izWebElement.jsClick">jsClick</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.jsDouble_click" href="#selenium_wrapper.izWebElement.jsDouble_click">jsDouble_click</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.move_element_by_offset" href="#selenium_wrapper.izWebElement.move_element_by_offset">move_element_by_offset</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.move_to_me" href="#selenium_wrapper.izWebElement.move_to_me">move_to_me</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.scroll_into_view" href="#selenium_wrapper.izWebElement.scroll_into_view">scroll_into_view</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.send_keys" href="#selenium_wrapper.izWebElement.send_keys">send_keys</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.send_keys_noJS" href="#selenium_wrapper.izWebElement.send_keys_noJS">send_keys_noJS</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.setValue" href="#selenium_wrapper.izWebElement.setValue">setValue</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.set_attribute" href="#selenium_wrapper.izWebElement.set_attribute">set_attribute</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.waitForText" href="#selenium_wrapper.izWebElement.waitForText">waitForText</a></code></li>
+<li><code><a title="selenium_wrapper.izWebElement.waitNexist" href="#selenium_wrapper.izWebElement.waitNexist">waitNexist</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.2</a>.</p>
+</footer>
+</body>
+</html>

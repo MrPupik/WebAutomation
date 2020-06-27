@@ -4,7 +4,7 @@
 import sys
 from os import path
 from time import sleep
-from json import loads
+from json import loads, dumps
 
 # selenium
 import selenium.webdriver as webdriver
@@ -40,7 +40,9 @@ drivers = {}
 
 class Selector:
     '''
-    iz class for selenium selectors
+    iz class for selenium selectors.
+    `selector` object is a combination of `By` method
+    and query statment
     '''
     def __init__(self, method: By, statement: str):        
         self.method = method
@@ -64,7 +66,12 @@ driver_options = {
 
 
 def set_webdriver_url(url):
-    raise NotImplementedError
+    """
+    set the url of webdriver that get_driver will communicate to
+    """
+    global _webdriver_url, CONFIG_PATH, conf
+    conf['webdriver-url'] = url
+    _write_config()
 
 
 def get_webdriver_url():
@@ -75,6 +82,9 @@ def get_webdriver_url():
 def get_driver(driver_alias, browser="chrome"):
     """
     get instance of izWebDriver. set driver-url at iz.conf
+    driver_alias is izSeleniums id of the driver. whenever you call
+    get_driver with the same alias, the same webdriver instasnce will be
+    returned
     """
     global drivers, b_save_sessions, b_old_sessions
 
@@ -107,6 +117,9 @@ def get_driver(driver_alias, browser="chrome"):
 
 
 def Quit_All():
+    """
+    quit all open webdriver sessions
+    """
     global drivers
     for driver in drivers.values():
         driver.quit()
@@ -123,10 +136,10 @@ class izWebDriver(webdriver.Remote):
     @staticmethod
     def close_open_sessions():
         """
-        close all webdriver sessions in webdriver_url.
+        close all webdriver sessions in the driver at `webdriver_url`.
         """
         global debug_mode
-        if debug_mode:            
+        if debug_mode:         
             log.warn('load_open_session: debug mode on. no session saving')
         else:
             close_open_sessions(get_webdriver_url(), izWebDriver,
@@ -175,18 +188,22 @@ class izWebDriver(webdriver.Remote):
     def find(self, selector: Selector, sensitive=True):
         """
         finds the first element according to given selector.
-        returns izWebElement
+        returns izWebElement instance
         """      
         return self._find(selector, sensitive=sensitive)
 
     def finds(self, selector: Selector, sensitive=True):
         """
         finds the all elements according to given selector. returns a list
+        if izWebElement instances
         """
         return self._find(
             selector, sensitive=sensitive, root=self._stpd_find_elements)
 
     def _stpd_find_elements(self, by: By, statement: str):
+        """
+        internal use only
+        """
         lst = self.find_elements(by, statement)
         if lst:
             return lst
@@ -194,6 +211,9 @@ class izWebDriver(webdriver.Remote):
             raise NoSuchElementException()
 
     def accept_alert(self):
+        """
+        accept the currently displayed alert
+        """
         alert = self.switch_to.alert
         alert.accept()
 
@@ -206,7 +226,7 @@ class izWebDriver(webdriver.Remote):
 
 class izWebElement(webelement.WebElement):
     """
-    iz class for selenium web-element
+    expands selenium web-element
     """
 
     def __init__(self, element: webelement.WebElement, selector: Selector,
@@ -218,7 +238,7 @@ class izWebElement(webelement.WebElement):
 
     def RunJS(self, script, failMassage, sensitive=False):
         """
-        iz function - running javascript with the element as arguments[0]
+        running javascript with this element as arguments[0]
         """
         log.info("RunJS:" + script)
         try:
@@ -241,6 +261,9 @@ class izWebElement(webelement.WebElement):
         self.RunJS(script, f'set_attribute failed for {name}: {value}')
 
     def click(self, fix_actions=True):
+        """
+        clicks this element using both selenium and JS
+        """
         if fix_actions:
             fix = [self.scroll_into_view]
         else:
@@ -252,6 +275,9 @@ class izWebElement(webelement.WebElement):
             failTitle=self.selector.statement + ": iz-click failed")
 
     def double_click(self):
+        """
+        using action chain
+        """
         actionWrapper(
             actions.ActionChains(self.driver).double_click(self).perform,
             None,
@@ -260,7 +286,7 @@ class izWebElement(webelement.WebElement):
 
     def move_to_me(self):
         """
-        moves the mouse to the element's location
+        moves the cursor to the element's location
         """
         actionWrapper(
             actions.ActionChains(self.driver).move_to_element(self).perform,
@@ -270,14 +296,14 @@ class izWebElement(webelement.WebElement):
 
     def jsClick(self):
         """
-        iz method. click with js script
+        click this element with js script
         """
         log.info("clicking " + self.selector.statement)
         self.RunJS("arguments[0].click()", "js click failed")
 
     def jsDouble_click(self):
         """
-        iz method. doubleclick with js script
+        doubleclick this element with js script
         """
         log.info("clicking " + self.selector.statement)
         self.RunJS("arguments[0].click();arguments[0].click();",
@@ -285,7 +311,7 @@ class izWebElement(webelement.WebElement):
 
     def setValue(self, text):
         """
-        iz method
+        set the value using JS script instead of `send_keys`
         """
         self.RunJS("arguments[0].value='" + text + "'",
                    self.selector.statement,
@@ -293,7 +319,7 @@ class izWebElement(webelement.WebElement):
 
     def appendValue(self, text):
         """
-        iz method
+        append value using JS script instead of `send_keys`
         """
         self.RunJS(
             "arguments[0].value=arguments[0].value+'" + text + "'",
@@ -302,7 +328,7 @@ class izWebElement(webelement.WebElement):
 
     def send_keys(self, *value):
         """
-        iz method. 
+        send keys with both selenium and JS script
         """
         if len(value) > 1:
             alt = None
@@ -313,12 +339,15 @@ class izWebElement(webelement.WebElement):
 
     def send_keys_noJS(self, *value):
         """
-        iz method
+        send keys with no JS usage.
         """
         actionWrapper(super().send_keys, None, [self.scroll_into_view],
                       self.selector.statement + ": send keys failed", *value)
 
     def scroll_into_view(self):
+        """
+        scroll this element into view
+        """
         self.RunJS(
             "arguments[0].scrollIntoView();",
             self.selector.statement + "SCROLL FAIL",
@@ -347,6 +376,10 @@ class izWebElement(webelement.WebElement):
 # in future, return 0,1,2 - for fail sucess unvisible
 # ( not visible != not exist)
     def waitNexist(self):
+        """
+        wait for this elements to disappear 
+        according to izSelenium.TimeOutManager
+        """
         timeouts = TM.Get()
         sleep_time = timeouts[1]
         total = 0
@@ -383,6 +416,7 @@ class izWebElement(webelement.WebElement):
         wait for this element to display
         the given text.(using find() every time)
         contains - it's enough that the element will *contain* the text
+        timeout as defined in izSelenium.TimeoutManager
         """
         try:
             return actionWrapper(
@@ -436,7 +470,7 @@ class izWebElement(webelement.WebElement):
 
 def _ar_compare_text(element: izWebElement, text: str, contains, throw_msg=""):
     """
-    used inside WaitForText function
+    used internally WaitForText function
     """
     result = element.webdiver.find(element.selector.method,
                                    element.selector.statement).get_text()
@@ -470,6 +504,10 @@ def _read_config():
         log.error(f'error reading config file at {CONFIG_PATH}')
         raise Error
 
+def _write_config():
+    global conf
+    with open(CONFIG_PATH, 'w') as conf_file:
+            conf_file.write(dumps(conf))
 
 # reading config
 _read_config()

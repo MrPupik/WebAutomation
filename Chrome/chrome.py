@@ -1,9 +1,9 @@
 import izSelenium.Core.Logger as log
 import izSelenium.Core.TimeoutManager as tm
 #region open/close app
-# from selenium.webdriver import Chrome
+from selenium.webdriver import Chrome
 from time import sleep
-import izSelenium.WebDriver.Selectors.chrome as chrome
+from izSelenium.Chrome.Selectors import chrome
 
 POPUPS_ALLOWED = False
 
