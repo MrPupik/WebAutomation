@@ -26,3 +26,5 @@ driver.get(r"http://www.google.com")
 search_input().send_keys("i know how to automate") 
 
 ```
+## Example project
+[see here][https://github.com/MrPupik/izSelenium_sample]
